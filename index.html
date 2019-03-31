@@ -70,6 +70,10 @@ draw();
 		draw()
  }, false)
 
+ window.addEventListener("orientationchange",function(e){
+	 reload();
+ })
+
  window.addEventListener("keypress", function(e){
 	 if (event.keyCode === 103){
 		 color = "green";
