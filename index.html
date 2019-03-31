@@ -17,7 +17,7 @@
   An alternative text describing what your canvas displays.
 	</canvas>
 
-<input type="color" id = "colorPicker" value="#fffff0">
+<input type="color" id = "colorPicker" value="rgb(62, 176, 173)">
 
 <script>
 // input
@@ -62,10 +62,12 @@ draw();
 	 draw()
  }, false)
 
- canvas.addEventListener("touchmove", function(e){
-	x=e.pageX;
-	y=e.pageY;
-	draw()
+ window.addEventListener("touchmove", function(e){
+		x=e.touches[0].screenX;
+		y=e.touches[0].screenY;
+		// x=canvas.x;
+		// y=canvas.y;
+		draw()
  }, false)
 
  window.addEventListener("keypress", function(e){
