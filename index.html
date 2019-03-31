@@ -12,12 +12,13 @@
 
 </head>
 <body>
-	<h1>Canvas Example</h1>
+
 	<canvas id="canvas" width="500" height="500">
   An alternative text describing what your canvas displays.
 	</canvas>
+	<h1>Canvas Example</h1>
 
-<input type="color" id = "colorPicker" value="rgb(62, 176, 173)">
+<input type="color" id = "colorPicker" value="#6827ee">
 
 <script>
 // input
@@ -26,12 +27,8 @@
 	// arc(x, y, radius, startAngle, endAngle, anticlockwise)
 	// closePath() connects the first point with the last point
 
-var w = window.innerWidth;
-var h = window.innerHeight;
-
-console.log("h",h)
-console.log(window);
-console.log("w",w)
+// var w = window.innerWidth;
+// var h = window.innerHeight;
 
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
@@ -40,37 +37,42 @@ var y = 1;
 var color = "red";
 var radius = 5;
 var minRadius = 1;
-canvas.width = w * .8;
-canvas.height = h * .8;
 
-console.log("h",canvas.height);
-console.log(window);
-console.log("w",canvas.width);
+function adjustWindow(){
+	canvas.width = window.innerWidth * .8;
+	canvas.height = window.innerHeight * .8;
+	console.log("h",canvas.height);
+	console.log("w",canvas.width);
+};
 
-// draw();
+adjustWindow();
 
  function draw(){
 		ctx.beginPath();
 		ctx.arc(x, y, radius, 0, 2*Math.PI);
 		ctx.fillStyle=color;
 		ctx.fill();
+		ctx.closePath();
  };
 
  window.addEventListener("mousemove", function(e){
 	 x=e.pageX;
 	 y=e.pageY;
 	 draw();
-	 console.log(x);
+
  }, false)
 
+ window.addEventListener("resize", function(e){
+ 	console.log("resized!");
+ 	adjustWindow();
+ 	// window.location.reload();
+ 	// console.log(window.innerWidth);
+ 	// console.log(window.innerHeight);
+ }, true )
+
  window.addEventListener("orientationchange",function(e){
-	 reload();
-	canvas.width = w * .8;
-	canvas.height = h * .8;
-
-	console.log(screen.orientation.angle);
-
-	draw();
+	 adjustWindow();
+		draw();
  })
 
  window.addEventListener("touchmove", function(e){
@@ -113,11 +115,6 @@ window.addEventListener("keydown", function(e){
 
 })
 
-window.addEventListener("resize", function(e){
-	canvas.width = w * .8;
-	canvas.height = h * .8;
-} )
-
 window.addEventListener("keydown", function(e){
 	if (event.keyCode === 32){
 		ctx.clearRect(0,0,2000,2000);
@@ -128,11 +125,8 @@ var clr = document.querySelector("#colorPicker");
 // console.log(clr.value);
 clr.addEventListener("change",function(e){
 	color = clr.value;
-	console.log(clr.value);
 })
 
-console.log(x);
-console.log(y);
 </script>
 
 
