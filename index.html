@@ -35,8 +35,8 @@ console.log("w",w)
 
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
-var x = 25;
-var y = 25;
+var x = 1;
+var y = 1;
 var color = "red";
 var radius = 5;
 var minRadius = 1;
@@ -47,11 +47,11 @@ console.log("h",canvas.height);
 console.log(window);
 console.log("w",canvas.width);
 
-draw();
+// draw();
 
  function draw(){
 		ctx.beginPath();
-		ctx.arc(x, y, radius, 0, 2*Math.PI)
+		ctx.arc(x, y, radius, 0, 2*Math.PI);
 		ctx.fillStyle=color;
 		ctx.fill();
  };
@@ -59,15 +59,18 @@ draw();
  window.addEventListener("mousemove", function(e){
 	 x=e.pageX;
 	 y=e.pageY;
-	 draw()
+	 draw();
+	 console.log(x);
  }, false)
 
  window.addEventListener("orientationchange",function(e){
+	 reload();
 	canvas.width = w * .8;
 	canvas.height = h * .8;
-	
+
 	console.log(screen.orientation.angle);
-	reload();
+
+	draw();
  })
 
  window.addEventListener("touchmove", function(e){
@@ -75,7 +78,7 @@ draw();
 		y=e.touches[0].screenY;
 		// x=canvas.x;
 		// y=canvas.y;
-		draw()
+		draw();
  }, false)
 
 
@@ -90,7 +93,7 @@ draw();
 	 } else if (event.keyCode === 121){
 		 color = "yellow";
 	 }
-	 draw()
+	 draw();
 	})
 
 window.addEventListener("keydown", function(e){
@@ -106,7 +109,7 @@ window.addEventListener("keydown", function(e){
 			radius -= 1;
 		}
 	}
-	draw()
+	draw();
 
 })
 
@@ -128,6 +131,8 @@ clr.addEventListener("change",function(e){
 	console.log(clr.value);
 })
 
+console.log(x);
+console.log(y);
 </script>
 
 
