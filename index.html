@@ -62,6 +62,14 @@ draw();
 	 draw()
  }, false)
 
+ window.addEventListener("orientationchange",function(e){
+	canvas.width = w * .8;
+	canvas.height = h * .8;
+	
+	console.log(screen.orientation.angle);
+	reload();
+ })
+
  window.addEventListener("touchmove", function(e){
 		x=e.touches[0].screenX;
 		y=e.touches[0].screenY;
@@ -70,9 +78,7 @@ draw();
 		draw()
  }, false)
 
- window.addEventListener("orientationchange",function(e){
-	 reload();
- })
+
 
  window.addEventListener("keypress", function(e){
 	 if (event.keyCode === 103){
